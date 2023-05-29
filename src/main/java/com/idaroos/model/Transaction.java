@@ -1,4 +1,4 @@
-package com.idaroos;
+package com.idaroos.model;
 
 import java.sql.Timestamp;
 

@@ -1,4 +1,4 @@
 package com.idaroos.view;
 
-public class Usermenu {
+public class CustomerMenu {
 }

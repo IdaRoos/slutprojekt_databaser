@@ -1,4 +1,4 @@
-package com.idaroos;
+package com.idaroos.model;
 
 public class Customer {
     private int id;
@@ -8,9 +8,8 @@ public class Customer {
     private String lname;
     private String email;
     private String phone;
-    private String address;
 
-    public Customer(int id, String ss_number, String password, String fname, String lname, String email, String phone, String address){
+    public Customer(int id, String ss_number, String password, String fname, String lname, String email, String phone){
 this.id = id;
 this.ss_number = ss_number;
 this.password = password;
@@ -18,7 +17,10 @@ this.fname = fname;
 this.lname = lname;
 this.email = email;
 this.phone = phone;
-this.address = address;
+    }
+
+    public Customer() {
+
     }
 
 
@@ -78,11 +80,4 @@ this.address = address;
         this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 }

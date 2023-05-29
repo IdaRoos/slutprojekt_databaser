@@ -4,14 +4,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4436f309-c84f-4c00-9f45-e78dcedafe13" name="Changes" comment="" />
+    <list default="true" id="4436f309-c84f-4c00-9f45-e78dcedafe13" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/CreateTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/CreateTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/model/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/model/DatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/model/DatabaseConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/model/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/model/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/repository/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/repository/AccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/repository/CustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/repository/TransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/repository/TransactionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/service/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/service/PasswordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/service/PasswordService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/service/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/service/TransactionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/view/CustomerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/view/CustomerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/view/LoginMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/view/LoginMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/view/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/database.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/database.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -30,7 +60,15 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -42,7 +80,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685002723909</updated>
+      <workItem from="1685002725290" duration="58943000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

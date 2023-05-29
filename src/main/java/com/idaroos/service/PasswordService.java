@@ -1,13 +1,23 @@
-package com.idaroos;
+package com.idaroos.service;
+
+import com.idaroos.model.Customer;
+import com.idaroos.repository.CustomerRepository;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.sql.SQLException;
 
-public class Password {
-    private static final int SALT_LENGTH = 16;
+public class PasswordService {
+    private final int SALT_LENGTH = 16;
 
-    public static String hash(String password) {
+    private final CustomerRepository customerRepository;
+
+    public PasswordService(CustomerRepository customerRepository){
+       this.customerRepository = customerRepository;
+    }
+
+    public String hash(String password) {
         // Create a SecureRandom object. This will be used to generate a random salt.
         SecureRandom random = new SecureRandom();
 
@@ -37,7 +47,7 @@ public class Password {
     }
 
 
-    public static boolean verifyPassword(String password, String hashedPassword) {
+    public boolean verifyPassword(String password, String hashedPassword) {
         // Extract the hashed password and salt from the input string. The hashed password is the first 64 characters,
         // and the salt (stored as a hexadecimal string) is everything after.
         String passwordHash = hashedPassword.substring(0, 64);
@@ -87,5 +97,11 @@ public class Password {
             data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4) + Character.digit(s.charAt(i+1), 16));
         }
         return data; // Return the byte array.
+    }
+
+    public void updatePassword(Customer customer, String newPassword) throws SQLException {
+        String hashedPassword = hash(newPassword);
+        customer.setPassword(hashedPassword);
+        customerRepository.updateCustomer(customer);
     }
 }

@@ -4,20 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4436f309-c84f-4c00-9f45-e78dcedafe13" name="Changes" comment="Added functions deleteUser, addAccount, deleteAccount and updateUser">
+    <list default="true" id="4436f309-c84f-4c00-9f45-e78dcedafe13" name="Changes" comment="Added functions for transaction and transaction history">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/CreateTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/CreateTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/model/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/model/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/model/Transaction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/repository/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/repository/AccountRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/repository/CustomerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/repository/TransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/repository/TransactionRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/service/AccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/service/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/service/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/service/TransactionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/view/LoginMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/view/LoginMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/idaroos/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/idaroos/view/MainMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +67,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685002723909</updated>
-      <workItem from="1685002725290" duration="110842000" />
+      <workItem from="1685002725290" duration="116587000" />
     </task>
     <task id="LOCAL−00001" summary="Added functions deleteUser, addAccount, deleteAccount and updateUser">
       <created>1685363316400</created>
@@ -82,7 +75,13 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1685363316400</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="Added functions for transaction and transaction history">
+      <created>1685533613831</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1685533613831</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -90,6 +89,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added functions deleteUser, addAccount, deleteAccount and updateUser" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added functions deleteUser, addAccount, deleteAccount and updateUser" />
+    <MESSAGE value="Added functions for transaction and transaction history" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functions for transaction and transaction history" />
   </component>
 </project>

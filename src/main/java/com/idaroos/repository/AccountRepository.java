@@ -62,6 +62,17 @@ public class AccountRepository {
         }
     }
 
+    public void deleteAccountsByCustomerId(int customerId) throws SQLException {
+        String query = "DELETE FROM accounts WHERE customer_id = ?";
+
+        try (Connection connection = databaseConnector.getConnection();
+        PreparedStatement deleteAccountsStatement = connection.prepareStatement(query)) {
+                deleteAccountsStatement.setInt(1, customerId);
+                deleteAccountsStatement.executeUpdate();
+            }
+        }
+
+
     public int getAccountIdByAccountNumber(String accountNumber) throws SQLException {
         String query = "SELECT id FROM accounts WHERE account_number = ?";
         try (Connection connection = this.databaseConnector.getConnection();

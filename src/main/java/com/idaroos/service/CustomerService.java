@@ -87,6 +87,7 @@ public class CustomerService {
 
     public void deleteCustomer(Customer customer) throws SQLException {
         customerRepository.deleteCustomer(customer);
+        accountRepository.deleteAccountsByCustomerId(customer.getId());
     }
 
     public void updateCustomer(Customer customer) throws SQLException {

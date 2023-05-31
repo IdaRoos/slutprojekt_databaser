@@ -32,7 +32,6 @@ public class AccountService {
     public void makeTransaction(int customerId, String fromAccountNumber, String toAccountNumber, int amount) throws SQLException {
         // Kontrollera om kontonumret tillhör rätt kund
         Account fromAccount = accountRepository.getAccountByAccountNumberAndCustomerId(fromAccountNumber, customerId);
-        System.out.println(fromAccountNumber + customerId);
         if (fromAccount == null) {
             throw new SQLException("Kontonumret för avsändaren är ogiltigt.");
         }

@@ -127,7 +127,6 @@ public class LoginMenu {
 
                     try {
                         customerService.updateCustomer(loggedInCustomer);
-                        System.out.println("Användaruppgifterna har uppdaterats.");
                     } catch (SQLException e) {
                         System.out.println("Fel vid uppdatering av användaruppgifter: " + e.getMessage());
                     }
@@ -167,7 +166,6 @@ public class LoginMenu {
 
                     try {
                         accountService.deleteAccount(deleteAccount, loggedInCustomer.getId());
-                        System.out.println("Kontot har tagits bort.");
                     } catch (SQLException e) {
                         System.out.println("Fel vid borttagning av konto: " + e.getMessage());
                     }

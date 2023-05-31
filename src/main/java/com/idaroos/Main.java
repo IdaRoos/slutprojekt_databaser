@@ -1,8 +1,5 @@
 package com.idaroos;
 
-import com.idaroos.model.Account;
-import com.idaroos.model.Customer;
-import com.idaroos.model.Transaction;
 import com.idaroos.repository.AccountRepository;
 import com.idaroos.repository.CustomerRepository;
 import com.idaroos.repository.TransactionRepository;
@@ -18,8 +15,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        CreateTable createtables = new CreateTable();
-        createtables.createTables();
+        CreateTable createTable = new CreateTable();
+        createTable.createTables();
         Scanner scanner = new Scanner(System.in);
 
         CustomerRepository customerRepository = new CustomerRepository();

@@ -52,12 +52,12 @@ public class CustomerService {
         // Kontrollera om kunden redan finns med samma e-postadress
         Customer existingCustomer = customerRepository.getCustomerBySsNumber(customer.getSs_number());
         if (existingCustomer != null) {
-            throw new SQLException("En användare med samma personnummer finns redan.");
+            throw new SQLException("En användare med samma personnummer finns redan. Logga in för att hantera dina konton.");
         }
 
         // Kontrollera om kontonumret redan är upptaget
         if (accountRepository.isAccountNumberTaken(account.getAccount_number())) {
-            throw new SQLException("Kontonumret är redan upptaget. Vänligen välj ett annat kontonummer.");
+            throw new SQLException("Kontonumret är redan upptaget. Vänligen välj ett annat kontonummer eller logga in för att hantera dina konton.");
         }
 
         String hashedPassword = passwordService.hash(password);
@@ -108,6 +108,10 @@ public class CustomerService {
         }
 
         customerRepository.updateCustomer(customer);
+    }
+
+    public Customer getCustomerById(int customerId) throws SQLException {
+        return customerRepository.getCustomerById(customerId);
     }
 
 }

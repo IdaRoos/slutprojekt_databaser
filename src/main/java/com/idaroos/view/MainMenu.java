@@ -2,33 +2,25 @@ package com.idaroos.view;
 
 import com.idaroos.model.Account;
 import com.idaroos.model.Customer;
-import com.idaroos.repository.AccountRepository;
-import com.idaroos.service.AccountService;
 import com.idaroos.service.CustomerService;
-import com.idaroos.service.PasswordService;
 
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MainMenu {
+    private final LoginMenu loginMenu;
     private final CustomerService customerService;
-    private final AccountService accountService;
-
-    private final PasswordService passwordService;
-    private final AccountRepository accountRepository;
-
     private final Scanner scanner;
 
-    public MainMenu(CustomerService customerService,AccountService accountService, PasswordService passwordService, AccountRepository accountRepository, Scanner scanner) {
+    public MainMenu(LoginMenu loginMenu, CustomerService customerService, Scanner scanner) {
+        this.loginMenu = loginMenu;
         this.customerService = customerService;
-        this.accountService = accountService;
-        this.passwordService = passwordService;
-        this.accountRepository = accountRepository;
         this.scanner = scanner;
     }
 
     public void showMenu() {
-        int choice;
+        int choice = 0;
 
         do {
             System.out.println("Hej! Vad vill du göra?");
@@ -36,7 +28,14 @@ public class MainMenu {
             System.out.println("2. Skapa användare");
             System.out.println("3. Avsluta");
             System.out.print("Ange ditt val: ");
-            choice = scanner.nextInt();
+
+            try {
+                choice = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Ogiltig inmatning. Var god försök igen.");
+                scanner.nextLine(); // Töm inmatningsbufferten
+                continue;
+            }
 
             switch (choice) {
                 case 1:
@@ -48,8 +47,7 @@ public class MainMenu {
 
                     try {
                         Customer loggedInCustomer = customerService.loginHandler(ssNumber, password);
-                        LoginMenu loginMenu = new LoginMenu(loggedInCustomer, customerService, passwordService, accountService, accountRepository, scanner);
-                        loginMenu.showMenu();
+                        loginMenu.showMenu(loggedInCustomer);
                     } catch (SQLException e) {
                         System.out.println("Fel vid inloggning: " + e.getMessage());
                     }
@@ -69,7 +67,7 @@ public class MainMenu {
                     newCustomer.setSs_number(scanner.next());
 
                     System.out.print("Ange Lösenord: ");
-                   password = scanner.next();
+                    password = scanner.next();
                     scanner.nextLine();
 
                     System.out.print("Ange Email: ");

@@ -118,4 +118,26 @@ public class CustomerRepository {
             statement.executeUpdate();
         }
     }
+
+    public Customer getCustomerById(int customerId) throws SQLException {
+        String query = "SELECT * FROM customers WHERE id = ?";
+        try (Connection connection = this.databaseConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, customerId);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                Customer customer = new Customer();
+                customer.setId(resultSet.getInt("id"));
+                customer.setFname(resultSet.getString("fname"));
+                customer.setLname(resultSet.getString("lname"));
+                customer.setEmail(resultSet.getString("email"));
+                customer.setPhone(resultSet.getString("phone"));
+                customer.setPassword(resultSet.getString("password"));
+                return customer;
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Fel vid hämtning av kunduppgifter: " + e.getMessage());
+        }
+        return null;
+    }
 }

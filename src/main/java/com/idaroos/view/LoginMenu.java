@@ -2,32 +2,39 @@ package com.idaroos.view;
 
 import com.idaroos.model.Account;
 import com.idaroos.model.Customer;
+import com.idaroos.model.Transaction;
 import com.idaroos.repository.AccountRepository;
 import com.idaroos.service.AccountService;
 import com.idaroos.service.CustomerService;
 import com.idaroos.service.PasswordService;
+import com.idaroos.service.TransactionService;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class LoginMenu {
-    private final Customer loggedInCustomer;
+//    private final Customer loggedInCustomer;
     private final CustomerService customerService;
-private final PasswordService passwordService;
+    private final PasswordService passwordService;
     private final AccountService accountService;
+
+    private final TransactionService transactionService;
     private final Scanner scanner;
     private final AccountRepository accountRepository;
 
-    public LoginMenu(Customer loggedInCustomer, CustomerService customerService, PasswordService passwordService, AccountService accountService, AccountRepository accountRepository, Scanner scanner) {
-        this.loggedInCustomer = loggedInCustomer;
+
+    public LoginMenu(CustomerService customerService, PasswordService passwordService, AccountService accountService, TransactionService transactionService, AccountRepository accountRepository, Scanner scanner) {
         this.customerService = customerService;
         this.passwordService = passwordService;
         this.accountService = accountService;
+        this.transactionService = transactionService;
         this.accountRepository = accountRepository;
         this.scanner = scanner;
     }
 
-    public void showMenu() {
+    public void showMenu(Customer loggedInCustomer) {
         int choice;
 
         do {
@@ -38,7 +45,7 @@ private final PasswordService passwordService;
             System.out.println("3. Lägg till konto");
             System.out.println("4. Ta bort konto");
             System.out.println("5. Gör transaktion");
-            System.out.println("6. Visa transaktionshistorik");
+            System.out.println("6. Visa transaktionshistorik mellan två datum");
             System.out.println("7. Visa kontouppgifter");
             System.out.println("8. Logga ut");
             System.out.print("Ange ditt val: ");
@@ -128,20 +135,20 @@ private final PasswordService passwordService;
 
                 case 3:
                     System.out.println("Lägg till konto");
-                    Account account = new Account();
+                    Account newAccount = new Account();
 
                     System.out.print("Ange kontonummer: ");
-                    account.setAccount_number(scanner.next());
+                    newAccount.setAccount_number(scanner.next());
                     scanner.nextLine(); // Läs in återstående nytecken
 
                     System.out.print("Ange kontonamn: ");
-                    account.setAccount_name(scanner.nextLine());
+                    newAccount.setAccount_name(scanner.nextLine());
 
                     System.out.print("Ange saldo: ");
-                    account.setBalance(scanner.nextDouble());
+                    newAccount.setBalance(scanner.nextDouble());
 
                     try {
-                        accountRepository.createAccount(account, loggedInCustomer.getId());
+                        accountRepository.createAccount(newAccount, loggedInCustomer.getId());
                         System.out.println("Kontot har lagts till.");
                     } catch (SQLException e) {
                         System.out.println("Fel vid skapande av konto: " + e.getMessage());
@@ -153,22 +160,107 @@ private final PasswordService passwordService;
                     System.out.print("Ange kontonummer: ");
                     String accountNumber = scanner.next();
 
+                    // Skapa ett nytt Account-objekt för att hantera borttagningen av kontot
+                    Account deleteAccount = new Account();
+                    deleteAccount.setAccount_number(accountNumber);
+                    deleteAccount.setCustomer_id(loggedInCustomer.getId());
+
                     try {
-                        accountService.deleteAccount(accountNumber, loggedInCustomer.getId());
+                        accountService.deleteAccount(deleteAccount, loggedInCustomer.getId());
+                        System.out.println("Kontot har tagits bort.");
                     } catch (SQLException e) {
                         System.out.println("Fel vid borttagning av konto: " + e.getMessage());
                     }
                     break;
 
-                case 5:
 
+                case 5:
+                    System.out.println("Gör transaktion");
+                    System.out.print("Ange kontonummer att skicka från: ");
+                    String fromAccountNumber = scanner.next();
+
+                    System.out.print("Ange kontonummer att skicka till: ");
+                    String toAccountNumber = scanner.next();
+
+                    System.out.print("Ange belopp att skicka: ");
+                    int amount = scanner.nextInt();
+
+                    try {
+                        System.out.println(loggedInCustomer.getId());
+                        accountService.makeTransaction(loggedInCustomer.getId(), fromAccountNumber, toAccountNumber, amount);
+                        System.out.println("Transaktionen har genomförts.");
+                    } catch (SQLException e) {
+                        System.out.println("Fel vid transaktion: " + e.getMessage());
+                    }
                     break;
 
+
                 case 6:
-                     break;
+                    System.out.println("Visa transaktionshistorik mellan två datum");
+                    System.out.print("Ange kontonummer: ");
+                    String transactionAccountNumber = scanner.next();
+                    System.out.print("Ange startdatum (YYYY-MM-DD): ");
+                    String startDateStr = scanner.next();
+                    System.out.print("Ange slutdatum (YYYY-MM-DD): ");
+                    String endDateStr = scanner.next();
+
+                    LocalDate startDate = LocalDate.parse(startDateStr);
+                    LocalDate endDate = LocalDate.parse(endDateStr);
+
+                    try {
+                        Account account = accountRepository.getAccountByAccountNumberAndCustomerId(transactionAccountNumber, loggedInCustomer.getId());
+
+                        if (account != null) {
+                            List<Transaction> transactions = transactionService.getTransactionHistoryByAccountNumberAndDates(transactionAccountNumber, startDate, endDate);
+                            System.out.println("Transaktionshistorik för konto: " + transactionAccountNumber);
+                            System.out.println("------------------");
+                            for (Transaction transaction : transactions) {
+                                LocalDate transactionDate = transaction.getCreated().toLocalDateTime().toLocalDate();
+                                int transactionAmount = transaction.getAmount();
+
+                                String transactionType = (transaction.getFromaccount_id() == account.getId()) ? "Skickat" : "Mottagit";
+                                String formattedAmount = (transaction.getFromaccount_id() == account.getId()) ? "-" + transactionAmount : String.valueOf(transactionAmount);
+                                System.out.println(transactionDate + "  " + transactionType + ": Belopp: " + formattedAmount);
+                            }
+                        } else {
+                            System.out.println("Det angivna kontonumret tillhör inte den inloggade användaren.");
+                        }
+                    } catch (SQLException e) {
+                        System.out.println("Fel vid hämtning av transaktionshistorik: " + e.getMessage());
+                    }
+                    break;
+
+
+
+
 
                 case 7:
+                    System.out.println("Visa kontouppgifter");
+                    System.out.println("Kundinformation:");
+                    System.out.println("-------------");
 
+                    try {
+                        Customer customer = customerService.getCustomerById(loggedInCustomer.getId());
+                        System.out.println("ID: " + customer.getId());
+                        System.out.println("Förnamn: " + customer.getFname());
+                        System.out.println("Efternamn: " + customer.getLname());
+                        System.out.println("Email: " + customer.getEmail());
+                        System.out.println("Telefonnummer: " + customer.getPhone());
+
+                        System.out.println();
+                        System.out.println("Konton:");
+                        System.out.println("-------------");
+
+                        List<Account> accounts = accountRepository.getAccountsByCustomerId(loggedInCustomer.getId());
+                        for (Account accountInfo : accounts) {
+                            System.out.println("Kontonamn: " + accountInfo.getAccount_name());
+                            System.out.println("Kontonummer: " + accountInfo.getAccount_number());
+                            System.out.println("Saldo: " + accountInfo.getBalance());
+                            System.out.println();
+                        }
+                    } catch (SQLException e) {
+                        System.out.println("Fel vid hämtning av kunduppgifter och konton: " + e.getMessage());
+                    }
                     break;
 
                 case 8:

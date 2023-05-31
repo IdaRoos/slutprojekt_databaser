@@ -28,6 +28,13 @@ public class Account {
 
     }
 
+    public Account(int id, int customer_id, String account_number, double balance){
+        this.id = id;
+        this.customer_id = customer_id;
+        this.account_number = account_number;
+        this.balance = balance;
+    }
+
     public int getId() {
         return id;
     }

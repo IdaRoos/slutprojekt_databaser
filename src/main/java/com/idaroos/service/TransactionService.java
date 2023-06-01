@@ -29,8 +29,7 @@ public class TransactionService {
     }
 
     public List<Transaction> getTransactionHistoryByAccountNumberAndDates(String accountNumber, LocalDate startDate, LocalDate endDate) throws SQLException {
-        int accountId = accountRepository.getAccountIdByAccountNumber(accountNumber);
-        return transactionRepository.getTransactionHistoryByAccountIdAndDates(accountId, startDate, endDate);
+        return transactionRepository.getTransactionHistoryByAccountNumberAndDates(accountNumber, startDate, endDate);
     }
 
 

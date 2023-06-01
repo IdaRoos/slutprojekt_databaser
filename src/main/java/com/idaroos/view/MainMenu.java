@@ -56,46 +56,84 @@ public class MainMenu {
                     System.out.println("Skapa användare");
                     Customer newCustomer = new Customer();
 
-                    // Läs in användardata från användaren
+
                     System.out.print("Ange Förnamn: ");
-                    newCustomer.setFname(scanner.next());
+                    String newFirstName = scanner.next();
 
-                    System.out.print("Ange Efternamn: ");
-                    newCustomer.setLname(scanner.next());
+                    if (customerService.isValidName(newFirstName)) {
+                        newCustomer.setFname(newFirstName);
 
-                    System.out.print("Ange Personnummer (yyyyMMdd-xxxx): ");
-                    newCustomer.setSs_number(scanner.next());
+                        System.out.print("Ange Efternamn: ");
+                        String newLastName = scanner.next();
 
-                    System.out.print("Ange Lösenord: ");
-                    password = scanner.next();
-                    scanner.nextLine();
+                        if (customerService.isValidName(newLastName)) {
+                            newCustomer.setLname(newLastName);
 
-                    System.out.print("Ange Email: ");
-                    newCustomer.setEmail(scanner.nextLine());
+                            System.out.print("Ange Personnummer (yyyyMMdd-xxxx): ");
+                            String newSsNumber = scanner.next();
 
-                    System.out.print("Ange Telefonnummer: ");
-                    newCustomer.setPhone(scanner.next());
+                            if (customerService.isValidSsNumber(newSsNumber)) {
+                                newCustomer.setSs_number(newSsNumber);
 
-                    Account account = new Account();
+                                System.out.print("Ange Lösenord: ");
+                                password = scanner.next();
+                                scanner.nextLine();
 
-                    // Läs in kontodata från användaren
-                    System.out.print("Ange Kontonummer: ");
-                    account.setAccount_number(scanner.next());
-                    scanner.nextLine(); // Läs in återstående nytecken
+                                System.out.print("Ange Email: ");
+                                newCustomer.setEmail(scanner.nextLine());
 
-                    System.out.print("Ange Kontonamn: ");
-                    account.setAccount_name(scanner.nextLine());
+                                System.out.print("Ange Telefonnummer: ");
+                                String newPhoneNumber = scanner.next();
 
-                    System.out.print("Ange Saldo: ");
-                    account.setBalance(scanner.nextDouble());
+                                if (customerService.isValidNumber(newPhoneNumber)) {
+                                    newCustomer.setPhone(newPhoneNumber);
 
-                    try {
-                        customerService.createCustomerWithAccount(newCustomer, password, account);
-                        System.out.println("Användare skapad!");
-                    } catch (SQLException e) {
-                        System.out.println("Fel vid skapande av användare: " + e.getMessage());
+                                    Account account = new Account();
+
+                                    System.out.print("Ange Kontonummer: ");
+                                    String newAccountNumber = scanner.next();
+
+                                    if (customerService.isValidNumber(newAccountNumber)) {
+                                        account.setAccount_number(newAccountNumber);
+                                        scanner.nextLine();
+
+                                        System.out.print("Ange Kontonamn: ");
+                                        account.setAccount_name(scanner.nextLine());
+
+                                        System.out.print("Ange Saldo: ");
+                                        String newBalance = scanner.next();
+
+
+                                        if (customerService.isValidNumber(newBalance)) {
+                                            account.setBalance(Double.parseDouble(newBalance));
+
+                                            try {
+                                                customerService.createCustomerWithAccount(newCustomer, password, account);
+                                                System.out.println("Användare skapad!");
+                                            } catch (SQLException e) {
+                                                System.out.println("Fel vid skapande av användare: " + e.getMessage());
+                                            }
+                                        } else {
+                                            System.out.println("Ogiltig inmatning för saldo. Var god ange ett giltigt nummer.");
+                                        }
+                                    } else {
+                                        System.out.println("Ogiltig inmatning för kontonummer. Var god ange endast siffror.");
+                                    }
+                                } else {
+                                    System.out.println("Ogiltig inmatning för telefonnummer. Var god ange endast siffror.");
+                                }
+                            } else {
+                                System.out.println("Ogiltig inmatning för personnummer. Var god ange formatet 'YYYYMMDD-xxxx'.");
+                            }
+                        } else {
+                            System.out.println("Ogiltig inmatning för efternamn. Var god ange endast bokstäver.");
+                        }
+                    } else {
+                        System.out.println("Ogiltig inmatning för förnamn. Var god ange endast bokstäver.");
                     }
                     break;
+
+
                 case 3:
                     System.out.println("Avslutar...");
                     break;

@@ -72,24 +72,6 @@ public class AccountRepository {
             }
         }
 
-
-    public int getAccountIdByAccountNumber(String accountNumber) throws SQLException {
-        String query = "SELECT id FROM accounts WHERE account_number = ?";
-        try (Connection connection = this.databaseConnector.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, accountNumber);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    return resultSet.getInt("id");
-                } else {
-                    throw new SQLException("Kontot med kontonummer " + accountNumber + " hittades inte.");
-                }
-            }
-
-
-        }
-    }
-
     public Account getAccountByAccountNumberAndCustomerId(String accountNumber, int customerId) throws SQLException {
         String query = "SELECT id, account_number, customer_id, balance FROM accounts WHERE account_number = ? AND customer_id = ?";
         try (Connection connection = this.databaseConnector.getConnection();

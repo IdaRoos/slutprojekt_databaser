@@ -64,7 +64,6 @@ public class CustomerService {
         customer.setPassword(hashedPassword);
         customerRepository.createCustomer(customer);
 
-        System.out.println(customer.getId());
         // Skapa bankkontot och koppla till kunden
         accountRepository.createAccount(account, customer.getId());
     }
@@ -113,6 +112,19 @@ public class CustomerService {
 
     public Customer getCustomerById(int customerId) throws SQLException {
         return customerRepository.getCustomerById(customerId);
+    }
+
+
+    public boolean isValidNumber(String input) {
+        return input.matches("\\d+");
+    }
+
+    public boolean isValidName(String input) {
+        return input.matches("[a-zA-Z]+");
+    }
+
+    public boolean isValidSsNumber(String input) {
+        return input.matches("\\d{8}-\\d{4}");
     }
 
 }

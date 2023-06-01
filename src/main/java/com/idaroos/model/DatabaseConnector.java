@@ -49,12 +49,10 @@ public class DatabaseConnector {
 
     public Connection getConnection() {
         try {
-            System.out.println("Fetching connection to database...");
             Connection connection = dataSource.getConnection();
-            System.out.println("done!");
             return connection;
         } catch (SQLException e) {
-            System.out.println("failed!");
+            System.out.println("Connection to database failed!");
             e.printStackTrace();
             System.exit(0);
             return null;

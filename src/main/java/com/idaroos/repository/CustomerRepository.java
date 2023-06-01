@@ -42,30 +42,6 @@ public class CustomerRepository {
         }
     }
 
-    public Customer getCustomerByEmail(String email) throws SQLException {
-        String query = "SELECT * FROM customers WHERE email = ?";
-
-        try (Connection connection = DatabaseConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, email);
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String ss_number = resultSet.getString("ss_number");
-                String password = resultSet.getString("password");
-                String fname = resultSet.getString("fname");
-                String lname = resultSet.getString("lname");
-                String phone = resultSet.getString("phone");
-                // ... Läs in övriga kolumnvärden
-
-                return new Customer(id, ss_number, password, fname, lname, email, phone);
-            } else {
-                return null; // Kund med angiven e-postadress finns inte
-            }
-        }
-    }
-
     public Customer getCustomerBySsNumber(String ssNumber) throws SQLException {
         String query = "SELECT * FROM customers WHERE ss_number = ?";
 

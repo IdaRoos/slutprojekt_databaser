@@ -28,16 +28,18 @@ public class TransactionRepository {
     }
 
 
-    public List<Transaction> getTransactionHistoryByAccountIdAndDates(int accountId, LocalDate startDate, LocalDate endDate) throws SQLException {
+    public List<Transaction> getTransactionHistoryByAccountNumberAndDates(String accountNumber, LocalDate startDate, LocalDate endDate) throws SQLException {
         List<Transaction> transactions = new ArrayList<>();
 
-        String query = "SELECT * FROM transactions WHERE (fromaccount_id = ? OR toaccount_id = ?) AND created >= ? AND created <= ? ORDER BY created DESC";
+        String query = "SELECT * FROM transactions WHERE (fromaccount_id IN (SELECT id FROM accounts WHERE account_number = ?) OR toaccount_id IN (SELECT id FROM accounts WHERE account_number = ?)) AND created BETWEEN ? AND ? ORDER BY created DESC";
+
         try (Connection connection = this.databaseConnector.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, accountId);
-            statement.setInt(2, accountId);
+            statement.setString(1, accountNumber);
+            statement.setString(2, accountNumber);
             statement.setTimestamp(3, Timestamp.valueOf(startDate.atStartOfDay()));
-            statement.setTimestamp(4, Timestamp.valueOf(endDate.atStartOfDay().plusDays(1).minusNanos(1)));
+            statement.setTimestamp(4, Timestamp.valueOf(endDate.atTime(23, 59, 59)));
+
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
@@ -55,5 +57,6 @@ public class TransactionRepository {
 
         return transactions;
     }
+
 
 }

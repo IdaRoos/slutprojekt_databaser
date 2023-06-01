@@ -44,6 +44,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/idaroos/Documents/IdeaProjects/slutprojekt_databaser",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -62,7 +63,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685002723909</updated>
-      <workItem from="1685002725290" duration="134133000" />
+      <workItem from="1685002725290" duration="134532000" />
+      <workItem from="1685628827793" duration="19000" />
+      <workItem from="1685630070317" duration="824000" />
     </task>
     <task id="LOCAL−00001" summary="Added functions deleteUser, addAccount, deleteAccount and updateUser">
       <created>1685363316400</created>
@@ -88,7 +91,13 @@
       <option name="presentableId" value="LOCAL−00004" />
       <updated>1685627637394</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL−00005" summary="Updated transaction functions and cleaned up code">
+      <created>1685628571479</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1685628571479</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
